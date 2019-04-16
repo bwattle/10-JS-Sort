@@ -1,0 +1,219 @@
+﻿<!--  code is kept as simple as possible for teaching purposes - as a result, swap code is repeated many times -->
+<!--  also print code is repeated - next mod is to make a print function -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Sort Algorithms</title>
+    <script type='text/javascript'>  
+        var arrToSort = new Array("Goose", "Yak", "Ant", "Dog", "Moose", "Cow", "Hen", "Rat", "Frog", "Beetle");    // text default - same as Davis text
+        function arrView() {                    // set defaults for array and random generation
+            document.getElementById('arrEntered').value = arrToSort;    // this default array can be modified by the user
+            document.getElementById('arrCount').defaultValue = 20;      // default 20 usually fits in text box below
+            document.getElementById('arrMax').defaultValue = 15;        // having single and double digit numbers differentiates numeric & text searches
+        }
+        function randomArr() {                  // generates a random array with 
+            var arrToSort = [];                 // WIPE existing array as new one may be shorter
+            arrSize = parseInt(document.getElementById('arrCount').value);
+            for (var k = 0; k < arrSize; k++) { // loop to generate k random numbers ("Math.random" is a # between 0 and 1. "Math.floor" rounds down) 
+                arrToSort[k] = Math.floor(Math.random() * (parseInt(document.getElementById('arrMax').value)) + 1);  // "+ 1" returns a randominteger from 1 to Max
+            }
+            document.getElementById('arrEntered').value = arrToSort;    // load the random array into the "Entered" text box
+        }
+        function s_bubble_Sort() {
+            var swapped = true;     // sentinal boolean for finishing the loop
+            var comparision = 0;     // element number to loop through
+            var temp = "";          // store element while swapping
+            var cycle = 0;          // cycle count
+            var pass = 0;           // count of elements that have been sorted
+            var swap = 0;           // count of swaps for stats
+            var txtPasses = "";     // text built up to show stages
+            arr = document.getElementById('arrEntered').value.split(","); //fetch array from text box so it can be edited
+            if (chkTxt.checked == true) {   // only runs if checkbox checked
+                for (var i = 0; i < arr.length; i++) {
+                    arr[i] = parseInt(arr[i]);   // elements are converted to numbers 1 by 1
+                }
+            }
+            while (swapped == true) {               // keep doing cycles until there are no swaps needed
+                swapped = false;                                        // if this was re-set to "false", we would never get out of the loop
+                cycle = cycle + 1                                       //keep track of the cycles
+                txtPasses = txtPasses + "Cycle # " + cycle + "\n"       // print a line when there is a new cycle
+                comparision = 0                                         // re-set the count
+                min = pass;                                             // initially min = 1st term
+                while (comparision < arr.length) {  // loop through FULL list
+                    if (arr[comparision] > arr[comparision + 1]) {      // swap if term on right is smaller
+                        temp = arr[comparision]                         // swap routine line 1
+                        arr[comparision] = arr[comparision + 1]         // swap routine line 2
+                        arr[comparision + 1] = temp                     // swap routine line 3
+                        swapped = true                                  // says another cycle is needed to check
+                        swap = swap + 1;                                // count of swaps      
+                    }
+                    comparision++;                                      // increment "comparison" by 1 (count = count + 1)
+                    txtPasses = txtPasses + arr + "  -" + "P" + pass + " S" + swap + "\n" // pass & swap count with line break at the end
+                    pass++;                                             // increment "pass" by 1  
+                }
+            }
+            document.getElementById('txtFound').value = arr;            // insert the sorted array
+            document.getElementById('txtStats').value = "Passes = " + pass + " Swaps = " + swap;  // insert the statistics
+            document.getElementById('txtPasses').value = txtPasses;     // insert the string containining the order of each pass
+        }
+        function e_bubble_Sort() {
+            var swapped = true;     // sentinal boolean for finishing the loop
+            var comparision = 0     // element number to loop through
+            var temp = "";          // store element while swapping
+            var cycle = 0;          // cycle count
+            var pass = 0;           // count of elements that have been sorted
+            var swap = 0;           // count of swaps for stats
+            var txtPasses = "";     // text built up to show stages
+            arr = document.getElementById('arrEntered').value.split(","); //fetch array from text box so it can be edited
+            if (chkTxt.checked == true) {   // only runs if checkbox checked
+                for (var i = 0; i < arr.length; i++) {
+                    arr[i] = parseInt(arr[i]);   // elements are converted to numbers 1 by 1
+                }
+            }
+            while (swapped == true) {               // keep doing cycles until there are no swaps needed
+                swapped = false;                                        // if this was re-set to "false", we would never get out of the loop
+                cycle = cycle + 1                                       //keep track of the cycles
+                txtPasses = txtPasses + "Cycle # " + cycle + "\n"       // print a line when there is a new cycle
+                comparision = 0                                         // re-set the count
+                min = pass;                                             // initially min = 1st term
+                while (comparision < arr.length - cycle) {  // loop through SHORTENED list as final term will be largest
+                    if (arr[comparision] > arr[comparision + 1]) {      // swap if term on right is smaller
+                        temp = arr[comparision]                         // swap routine line 1
+                        arr[comparision] = arr[comparision + 1]         // swap routine line 2
+                        arr[comparision + 1] = temp                     // swap routine line 3
+                        swapped = true                                  // says another cycle is needed to check
+                        swap = swap + 1;                                // count of swaps      
+                    }
+                    comparision++;                                      // increment "comparison" by 1 (count = count + 1)
+                    txtPasses = txtPasses + arr + "  -" + "P" + pass + " S" + swap + "\n" // pass & swap count with line break at the end
+                    pass++;                                             // increment "pass" by 1  
+                }
+            }
+            document.getElementById('txtFound').value = arr;            // insert the sorted array
+            document.getElementById('txtStats').value = "Passes = " + pass + " Swaps = " + swap;  // insert the statistics
+            document.getElementById('txtPasses').value = txtPasses;     // insert the string containining the order of each pass
+        }
+        function selection_Sort() {
+            var pass = 0;           // count of elements that have been sorted
+            var min = 0;            // element # of minimum
+            var temp = "";          // store element while swapping
+            var swap = 0;           // count of swaps for stats
+            var txtPasses = "";     // text built up to show stages
+            arr = document.getElementById('arrEntered').value.split(","); //fetch array from text box so it can be edited
+            if (chkTxt.checked == true) {   // only runs if checkbox checked
+                for (var i = 0; i < arr.length; i++) {
+                    arr[i] = parseInt(arr[i]);   // elements are converted to numbers 1 by 1
+                }
+            }
+            while (pass < arr.length) {         // loop through all elements
+                count = pass + 1;                                   // "count" starts the unsorted list 
+                min = pass;                                         // initially min = 1st term
+                while (count <= arr.length) {                       // loop through unsorted list
+                    if (arr[count] < arr[min]) {                    // compare each term with minimum
+                        min = count;                                // re-set the minimum
+                    }
+                    count++;                                        // increment "count" by 1 (count = count + 1)
+                }
+                temp = arr[pass]
+                arr[pass] = arr[min]
+                arr[min] = temp
+                swap = swap + 1;            // count of swaps
+                txtPasses = txtPasses + arr + "  -" + "P" + pass + " S" + swap + "\n" // pass & swap count with line break at the end
+                pass++;                                             // increment "pass" by 1
+            }
+            document.getElementById('txtFound').value = arr;        // insert the sorted array
+            document.getElementById('txtStats').value = "Passes = " + pass + " Swaps = " + swap;  // insert the statistics
+            document.getElementById('txtPasses').value = txtPasses; // insert the string containining the order of each pass
+        }
+        function insertion_Sort() {
+            // code is kept as simple as possible
+            //From <https://www.w3resource.com/javascript-exercises/searching-and-sorting-algorithm/searching-and-sorting-algorithm-exercise-4.php
+            var temp = 1;    // used for the last term of the array
+            var pass = 0;    // count of passes for stats
+            var swap = 0;   // count of swaps for stats
+            var txtPasses = ""; // text built up to show stages
+            arr = document.getElementById('arrEntered').value.split(","); //fetch array from text box so it can be edited
+            if (chkTxt.checked == true) {   // only runs if checkbox checked
+                for (var i = 0; i < arr.length; i++) {
+                    arr[i] = parseInt(arr[i]);   // elements are converted to numbers 1 by 1
+                }
+            }
+            for (var i = 1; i < arr.length; i++) {
+                if (arr[i] < arr[0]) {
+                    //move current element to the first position
+                    for (var k = 0; k < i; k++) {   // standard "swap" routine
+                        temp = arr[i];              // save the last element as "temp"
+                        arr[i] = arr[k];            // make the 2nd last = last and shuffle along
+                        arr[k] = temp;              // make the first = to "temp"
+                        swap = swap + 1;            // count of swaps
+                    }
+                }
+                else if (arr[i] > arr[i - 1]) {                     // leave current element where it is
+                    continue;
+                }
+                else {                                              // find where element should go
+                    temp = arr[i];                                  // save the last element as "temp"
+                    for (var j = 0; j < i - 1; j++) {               // repeat for all the elements before "temp"
+                        if (temp < arr[i - j - 1]) {                // if "temp" is less than the element, swap the elements
+                            arr[i - j] = arr[i - j - 1]             // move the value to the right 1 place where "temp" currently is
+                            arr[i - j - 1] = temp;                  // paste the "temp" value to the left    
+                            swap = swap + 1;                        // keep count of the swaps
+                        }                                           // repeat this "swap" routine until temp is bigger than the previous element
+                    }
+                }
+                pass = pass + 1;                                    // keep count of the passes
+                txtPasses = txtPasses + arr + "  -" + "P" + pass + " S" + swap + "\n" // pass & swap count with line break at the end
+            }
+            document.getElementById('txtFound').value = arr;        // insert the sorted array
+            document.getElementById('txtStats').value = "Passes = " + pass + " Swaps = " + swap;  // insert the statistics
+            document.getElementById('txtPasses').value = txtPasses; // insert the string containining the order of each pass
+            return arr;                                             // NOT NEEDED HERE!!   Use if the function is called, maybe by a message box
+        }
+    </script>
+</head>
+<body onload="arrView()">
+    <!--  calls function to load default settings - a time saver  -->
+    <form id="input">
+        <h1>Sort Comparison Insert vs Selection</h1>
+        <h2>Numeric or Text sort (check box to see the difference)</h2>
+        # of elements:&nbsp;&nbsp;
+          <textarea id="arrCount" rows="1" cols="3"></textarea>
+        &nbsp;&nbsp;    Max element #:&nbsp;&nbsp; 
+        <textarea id="arrMax" rows="1" cols="3"></textarea>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input id="btnGenerate" type="Button" value="Generate random array" onclick="randomArr()" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        Tick for NUMERIC data: 
+          <input id="chkTxt" type="checkbox">
+        <br />
+        Here is a hard coded unsorted array:<br />
+        <textarea id="arrEntered" rows="2" cols="100"></textarea>
+        <br />
+        <input type="Button" value="- Simple Bubble sort -" onclick="s_bubble_Sort()" />&nbsp;&nbsp;&nbsp;
+        <input type="Button" value="-Enhanced Bubble sort-" onclick="e_bubble_Sort()" />&nbsp;&nbsp;&nbsp;
+        <input type="Button" value="-   Selection sort   -" onclick="selection_Sort()" />&nbsp;&nbsp;&nbsp;
+        <input type="Button" value="-   Insertion sort   -" onclick="insertion_Sort()" />&nbsp;&nbsp;&nbsp;<br />
+        <textarea id="txtFound" cols="100"></textarea>
+        <br />
+        Stats:<br />
+        <textarea id="txtStats" rows="1" cols="100"></textarea>
+        <br />
+        Passes (P) and Swap count (S):<br />
+        <textarea id="txtPasses" rows="20" cols="100"></textarea>
+        <br />
+        <br />
+        Bubble info: <a href="images/bubbleSort-PseudoFlow.png" target="_blank">pseudocode and flow chart</a> - Samuel Davis 
+        Text for Software Development &amp; Design, Yr 12 Ch4 P&#39;s 170-171. Diagram of 
+        <a href="images/bubbleSort-Passes.png" target="_blank">passes for the default animals</a> should agree with the result above.<br />
+        <br />
+        Selection info: <a href="images/selectionSort-PseudoFlow.png" target="_blank">pseudocode and flow chart</a> - Samuel Davis 
+        Text for Software Development &amp; Design, Yr 12 Ch4 P&#39;s 166-167. Diagram of 
+        <a href="images/selectionSort-Passes.png" target="_blank">passes for the default animals</a> should agree with the result above.<br />
+        <br />
+        Insertion info:
+        <a href="https://www.w3resource.com/javascript-exercises/searching-and-sorting-algorithm/searching-and-sorting-algorithm-exercise-4.php"
+            target="_blank">https://www.w3resource.com/javascript-exercises/searching-and-sorting-algorithm/searching-and-sorting-algorithm-exercise-4.php</a>
+        . Copy of GIF graphic <a href="images/insertionSort-animation.gif" target="_blank">here</a>.<br />
+        <br />
+    </form>
+</body>
+</html>
