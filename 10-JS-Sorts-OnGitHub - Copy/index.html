@@ -176,12 +176,13 @@
 <body onload="arrView()">
     <!--  calls function to load default settings - a time saver  -->
     <form id="input">
-        <h1>Sort Comparison Insert vs Selection</h1>
+        <h1>Sort Comparison - Bubble vs Selection vs Insertion</h1>
         <h2>Numeric or Text sort (check box to see the difference)</h2>
-        # of elements:&nbsp;&nbsp;
+        <p># of elements:&nbsp;&nbsp;
           <textarea id="arrCount" rows="1" cols="3"></textarea>
         &nbsp;&nbsp;    Max element #:&nbsp;&nbsp; 
-        <textarea id="arrMax" rows="1" cols="3"></textarea>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <textarea id="arrMax" rows="1" cols="3"></textarea>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <input id="btnGenerate" type="Button" value="Generate random array" onclick="randomArr()" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         Tick for NUMERIC data: 
           <input id="chkTxt" type="checkbox">
@@ -202,8 +203,9 @@
         The sorted array is:<br />
         <textarea id="txtFound" cols="100" name="S1" rows="2"></textarea>
         <br />
-        <br />
-        Bubble info: <a href="images/bubbleSort-PseudoFlow.png" target="_blank">pseudocode and flow chart</a> - Samuel Davis 
+        </p>
+        <h2>        Animations for each of the sorts are shown side by side <a href="sortAnimations.html" target="_blank">here</a>.</h2>
+        <p>Bubble info: <a href="images/bubbleSort-PseudoFlow.png" target="_blank">pseudocode and flow chart</a> - Samuel Davis 
         Text for Software Development &amp; Design, Yr 12 Ch4 P&#39;s 170-171. Diagram of 
         <a href="images/bubbleSort-Passes.png" target="_blank">passes for the default animals</a> should agree with the result above.<br />
         <br />
@@ -214,8 +216,9 @@
         Insertion info:
         <a href="https://www.w3resource.com/javascript-exercises/searching-and-sorting-algorithm/searching-and-sorting-algorithm-exercise-4.php"
             target="_blank">https://www.w3resource.com/javascript-exercises/searching-and-sorting-algorithm/searching-and-sorting-algorithm-exercise-4.php</a>
-        . Copy of GIF graphic <a href="images/insertionSort-animation.gif" target="_blank">here</a>.<br />
+        . <br />
         <br />
+      </p>
     </form>
 </body>
 </html>
