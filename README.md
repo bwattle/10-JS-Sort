@@ -1,4 +1,4 @@
-# 10-JS-Sort
+# Compare Sorts which are in the NSW HSC Software Design & Development course
 Website at: https://bwattle.github.io/10-JS-Sort/ 
 <p>Code to compare selection, insertion and bubble sorts.</p>
 <p>Default data is text, but buttons generate random numbers.</p>
