@@ -18,4 +18,4 @@ Other GitHub sites useful for HSC students:
 
 * Binary puzzle - old HSC question: https://github.com/bwattle/BinaryPuzzle Web: https://bwattle.github.io/BinaryPuzzle/
 
-* Array of records - 4 languages + a 12 term 1 assessment for the building of a pizza app: Repo: https://github.com/bwattle/arrRecords Web: https://bwattle.github.io/arrRecords/![image](https://user-images.githubusercontent.com/45184841/135800118-e5487d49-766c-41ca-8806-6dc4c4b1da22.png)
+* Array of records - 4 languages + a 12 term 1 assessment for the building of a pizza app: Repo: https://github.com/bwattle/arrRecords Web: https://bwattle.github.io/arrRecords/
